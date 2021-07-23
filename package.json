@@ -1,0 +1,19 @@
+{
+  "name": "pack_animes",
+  "version": "1.0.0",
+  "description": "Site de animes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pack team",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
+    "slugify": "^1.5.3"
+  }
+}

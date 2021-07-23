@@ -1,0 +1,15 @@
+<%- include('partials/header.ejs') %>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap5.min.css" />
+
+
+
+<% animes.forEach((anime) => { %>
+    <div value="<%= anime.id %>"> 
+       <a href="anime/<%= anime.id %>">
+       <div class=""> <%= anime.title %></div>
+        <img src="/static/assets/tmp/<%= anime.name %>" width="350"> 
+       </a>
+    </div>
+<% }) %>
+
