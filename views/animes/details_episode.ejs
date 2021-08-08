@@ -1,8 +1,71 @@
-<h1>
-    <%= episode.name %>
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
 
-    <video width="400" controls autoplay>
-        <source src="<%= episode.link %>" type="video/mp4">
-    </video>
+<section class="anime anime-episode-details">
+    <div class="container pt-container">
 
-</h1>
+       <div class="row">
+           <div class="col-md-12">
+            <div class="d-flex">
+                <h1 class="poppins fw-bold white pb-4 fs-30"><%= episode.name %></h1>
+                <div class="players ms-4">
+                    <button class="btn btn-padrao player-1">Player 1</button>
+                    <button class="btn btn-padrao ms-2 player-2">Player 2</button>
+                </div>
+            </div>
+            <p class="poppins white pb-4 fs-15">Tente trocar de players caso o episodio não rode</p>
+            <video
+            id="my-video"
+            class="video-js d-none"
+            controls
+            preload="auto"
+            autoplay="true"
+            width="100%"
+            height="500"
+            poster=""
+            data-setup="{}"
+            >
+            <source src="<%= episode.link %>" type="video/mp4" />
+            <source src="<%= episode.link %>" type="video/webm" />
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a
+                >
+            </p>
+            </video>
+            <iframe class="iframe-anime"
+             src="<%= episode.link_frame %>" 
+            frameborder="0" allowfullscreen>
+        </iframe>
+           </div>
+       </div>
+    </div>
+</section>
+
+<script>
+    //players
+    let frame = document.querySelector('.iframe-anime');
+    let videojs = document.querySelector('.video-js');
+
+
+    let btn1 = document.querySelector('.player-1');
+    btn1.addEventListener('click', function () {
+        frame.classList.add('d-none')
+
+        videojs.classList.remove('d-none')
+        videojs.classList.add('d-block')
+    })
+
+    let btn2 = document.querySelector('.player-2');
+    btn2.addEventListener('click', function () {
+        videojs.classList.add('d-none')
+
+        frame.classList.remove('d-none')
+        frame.classList.add('d-block')
+    })
+
+</script>
+
+<%- include('../partials/footer.ejs') %>

@@ -10,16 +10,19 @@ const slugify = require('slugify')
 class AnimeController {
     create(req,res){
         const title = req.body.title 
-        const genre = req.body.category   
+        const description = req.body.description
+        const genre = req.body.category.join()
         console.log(genre)
+        const type = req.file.mimetype
+        const name = req.file.originalname
 
         if(title != undefined){
             Anime.create({
                 title: title,
-                description: req.body.description,
-                type: req.file.mimetype,
-                name: req.file.originalname,
-                genreId: genre,
+                description: description,
+                type: type,
+                name: name,
+                genres: genre,
                 slug: slugify(title),
                 image: fs.readFileSync(
                     __basedir + "/resources/static/assets/uploads/" + req.file.filename
@@ -62,10 +65,14 @@ class AnimeController {
         });
     }
 
-    showCategory(req,res){
+    renderPage(req, res) {
+        res.render("admin/new_anime");
+    };
+
+    showCategory(req,res,next){
         Category.findAll()
-        .then(category => {
-            res.render("admin/new_anime", {category: category})
+        .then (category => {
+            res.render("admin/new_anime", {categories: category})
         })
     }
     

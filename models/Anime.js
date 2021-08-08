@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+
 const connection = require('../db/connection');
 const Genres = require('./Genres')
 
@@ -27,11 +28,17 @@ const Anime = connection.define('animes', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    genres: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
 });
 
-Genres.hasMany(Anime, {
-    
-})
+
+//Anime.belongsTo(Genres)
+//Genres.hasMany(Anime)
+
+//Genres.hasMany(Anime)
 
 //Anime.sync({force: true})
 

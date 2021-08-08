@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize');
 const connection = require('../db/connection');
+
+const Anime = require('./Anime')
+
 const Genres = connection.define('genres', {
     name: {
         type: Sequelize.STRING,
@@ -11,7 +14,6 @@ const Genres = connection.define('genres', {
     },
 
 });
-
 
 //Genres.sync({force: true})
 

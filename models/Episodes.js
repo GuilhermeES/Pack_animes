@@ -6,7 +6,11 @@ const connection = require('../db/connection');
 const Episodes = connection.define('episodes', {
     link: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: true
+    },
+    link_frame: {
+        type: Sequelize.TEXT,
+        allowNull: true
     },
     name: {
         type: Sequelize.STRING,
@@ -22,7 +26,7 @@ const Episodes = connection.define('episodes', {
 Anime.hasMany(Episodes)
 Episodes.belongsTo(Anime)
 
-//Episodes.sync({force: true})
+Episodes.sync({force: true})
 
 
 

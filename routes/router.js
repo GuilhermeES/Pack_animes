@@ -27,7 +27,7 @@ router.get('/episodio/:slug', EpisodeController.detailsEpisode)
 /*Admin Routes*/
 /*Pages*/
 router.get('/admin', AdminController.index)
-router.get('/admin/new/anime', AnimeController.showCategory)
+router.get('/admin/new/anime', AnimeController.showCategory, AnimeController.renderPage)
 router.get('/admin/new/category', AdminController.createCategory)
 router.get('/admin/new/episode', AnimeController.show)
 

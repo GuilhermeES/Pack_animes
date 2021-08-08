@@ -5,9 +5,9 @@
     <textarea name="description" rows="5"></textarea><br>
     <input type="file" name="file" accept="image/*" onchange="loadFile(event)" required><br>
 
-    <select name="category[]" required multiple>
-      <% category.forEach((category) => { %>
-          <option value="<%= category.id %>"> <%= category.name %> </option>
+    <select name="category" required multiple>
+      <% categories.forEach((category) => { %>
+          <option value="<%= category.name %>"> <%= category.name %> </option>
       <% }) %>
     </select><br>
 

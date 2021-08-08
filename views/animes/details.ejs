@@ -1,11 +1,30 @@
-<h1>Detalhes anime</h1>
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
 
-<h1>
-   <%= anime.title %>
-</h1>
+<section class="anime anime-details">
+   <div class="container pt-container">
+          <figure class="anime-figure text-center">
+               <img src="/static/assets/tmp/<%= anime.name %>" class="capa-anime-details"> 
+           </figure>
+         
+            <h1 class=" text-center poppins fw-bold white">
+               <%= anime.title %>
+            </h1>
+            <p class="poppins white text-center"><%= anime.description %></p>
+            
+            <div class="category">
+               <% anime.genres.split(",").forEach(element => { %>
+                  <div class="category-item"> <%= element %> </div>
+               <% }); %>  
+            </div>       
+      
+      <h2 class="poppins fw-bold white pb-4 pt-3">Episodios:</h2>
+      <% episodes.forEach((episode) => { %>
+      <a href="/episodio/<%= episode.slug %>" class="episode">
+         <%= episode.name %>
+      </a><br><hr>
+      <% }) %>
+   </div>
+</section>
 
-<% episodes.forEach((episode) => { %>
-     <a href="/episodio/<%= episode.slug %>">
-        <%= episode.name %>
-     </a>
-<% }) %>
+<%- include('../partials/footer.ejs') %>
