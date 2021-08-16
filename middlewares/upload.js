@@ -18,4 +18,5 @@ let storage = multer.diskStorage({
 });
 
 let uploadFile = multer({ storage: storage, fileFilter: imageFilter });
+
 module.exports = uploadFile;

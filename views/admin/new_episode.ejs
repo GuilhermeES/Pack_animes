@@ -1,3 +1,7 @@
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+
 <h1>Novo episodio</h1>
 
 <form method="POST" action="/admin/create/episode">
@@ -9,5 +13,10 @@
             <option value="<%= anime.id %>"> <%= anime.title %> </option>
         <% }) %>
     </select><br>
+     <input type="radio"  value="1" name="status" checked>
+      <label for="html">Ativado</label><br>
+
+      <input type="radio"  value="0" name="status">
+      <label for="css">Desativado</label><br>
     <button type="submit">Cadastrar</button>
 </form>

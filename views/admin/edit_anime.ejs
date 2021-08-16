@@ -1,0 +1,43 @@
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+<section class="anime edit-anime-details">
+    <div class="container pt-container">
+     <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" value=" <%= anime.title %>">
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" name="description" rows="5" ><%= anime.description %></textarea>
+        </div>
+        <div class="mb-3">
+            <input type="file" name="file" accept="image/*" onchange="loadFile(event)">
+        </div>
+        <div class="mb-3">
+        <img id="output" width="300" src="/static/assets/tmp/<%= anime.name %>">
+            </div>
+        <button type="submit" class="btn btn-padrao">Atualizar</button>
+     </form>
+
+        <h2 class="poppins fw-bold white pb-4 pt-3">Episodios:</h2>
+        <% episodes.forEach((episode) => { %>
+        <a href="/admin/edit-episode/<%= episode.slug %>" class="episode">
+            <%= episode.name %>
+        </a><br>
+        <hr>
+        <% }) %>
+    </div>
+</section>
+
+<script>
+    var loadFile = function (event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var output = document.getElementById('output');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+  </script>
+
+<%- include('../partials/footer.ejs') %>

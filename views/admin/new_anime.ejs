@@ -1,3 +1,6 @@
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
 <h1>Novo anime</h1>
 
 <form method="POST" action="/admin/create" enctype="multipart/form-data">
@@ -5,7 +8,7 @@
     <textarea name="description" rows="5"></textarea><br>
     <input type="file" name="file" accept="image/*" onchange="loadFile(event)" required><br>
 
-    <select name="category" required multiple>
+    <select name="category"  multiple>
       <% categories.forEach((category) => { %>
           <option value="<%= category.name %>"> <%= category.name %> </option>
       <% }) %>

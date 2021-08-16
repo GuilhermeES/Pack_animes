@@ -1,0 +1,17 @@
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+
+<section class="login-section">
+    <div class="login">
+        <form action="/auth" method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Login" name="login">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Login" name="password">
+            </div>
+            <button type="submit" class="w-100 btn-padrao btn">Entrar</button>
+        </form>
+    </div>
+</section>

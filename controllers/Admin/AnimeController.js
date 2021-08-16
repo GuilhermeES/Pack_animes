@@ -7,12 +7,32 @@ const { Op } = require("sequelize");
 const fs = require("fs");
 const slugify = require('slugify')
 
-class AnimeController {
+module.exports = {
+
+     /*Render views ----------------------------------*/
+     createCategoryView(req,res){
+        res.render("admin/new_category", {title: "Admin"})
+    },
+
+    createEpisodeView(req,res){
+        Anime.findAll()
+        .then(animes => {
+            res.render("admin/new_episode", {animes: animes, title: "Admin"})
+        });
+    },
+
+    createAnimeView(req,res){
+        Category.findAll()
+        .then (category => {
+            res.render("admin/new_anime", {categories: category, title: "Admin"})
+        })
+    },
+
+    /*Create Anime, category and episode------------*/
     create(req,res){
         const title = req.body.title 
         const description = req.body.description
         const genre = req.body.category.join()
-        console.log(genre)
         const type = req.file.mimetype
         const name = req.file.originalname
 
@@ -39,10 +59,31 @@ class AnimeController {
         else{
             res.redirect('/admin')
         }
-    }
+    },
+
+    createEpisode(req,res){
+        const name = req.body.name
+        const link = req.body.link
+        const status = req.body.status
+        const link_frame = req.body.link_frame
+        const anime = req.body.anime
+
+        Episodes.create({
+            name: name,
+            link: link,
+            link_frame: link_frame,
+            status: status,
+            animeId: anime,
+            slug: slugify(name),
+        })
+        .then(() => {
+            res.redirect('/admin/new/episode')
+        })
+    },
 
     createCategory(req,res){
         const name = req.body.name
+        console.log(name)
 
         if(name != undefined){
             Category.create({
@@ -56,35 +97,26 @@ class AnimeController {
         else{
             res.redirect('/admin/new/category')
         }
-    }
-
-    show(req,res){
+    },
+    
+    /*GET ANIME DETAILS AND EDIT-------------------------------------*/
+    list(req,res){
         Anime.findAll()
         .then(animes => {
-            res.render("admin/new_episode", {animes: animes})
-        });
-    }
-
-    renderPage(req, res) {
-        res.render("admin/new_anime");
-    };
-
-    showCategory(req,res,next){
-        Category.findAll()
-        .then (category => {
-            res.render("admin/new_anime", {categories: category})
+            res.render("admin/anime_list", {animes: animes, title: "Admin"})
         })
-    }
-    
-    detailsAnime(req,res){
+    },
+
+    detailsAnimeAdmin(req,res){
         const id = req.params.id
         Anime.findByPk(id)
         .then(anime => {
             if(anime != undefined){
                 Episodes.findAll({where: {animeId: id}}).then(episodes => {
-                    res.render("animes/details", {
+                    res.render("admin/edit_anime", {
                         episodes: episodes,
-                        anime: anime
+                        anime: anime,
+                        title: "Admin"
                     })
                 })                
             }   
@@ -92,7 +124,35 @@ class AnimeController {
                 res.redirect('/')
             }
         })
-    }
-}
+    },
 
-module.exports = new AnimeController()
+    editEpisode(req,res){
+        const slug = req.params.slug
+        Episodes.findOne({
+            where: {
+                slug: slug
+            }
+        })
+        .then(episode => {
+            if(episode != undefined){
+                res.render("admin/edit_episode", {episode: episode,  title: "Admin"})
+               }
+               else{
+                   res.redirect("/admin/list")
+               }
+        })
+    },
+
+    updateEpisode(req,res){
+        const slug = req.params.slug
+        const link = req.body.link
+        const link_frame = req.body.link_frame
+        Episodes.update({link : link, link_frame: link_frame }, {where:  {slug:slug} })
+        .then(episode => {
+            if(episode != undefined){
+                res.redirect("/admin/edit-episode/" + `${slug}`)
+            }
+        })
+
+    } 
+}

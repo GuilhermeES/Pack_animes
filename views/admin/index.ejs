@@ -1,12 +1,24 @@
-<h1>Admin</h1>
-<a href="/admin/new/anime">
-    <button class="">Cadastrar novo anime</button>
-</a>
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
 
-<a href="/admin/new/episode">
-    <button class="">Cadastrar novos episódios</button>
-</a>
 
-<a href="/admin/new/category">
-    <button class="">Cadastrar nova categoria</button>
-</a>
+<section class="admin">
+    <div class="container pt-5">
+        <h1 class="white poppins">admin</h1>
+        <a href="/admin/new/anime">
+            <button class="btn btn-padrao">Cadastrar novo anime</button>
+        </a>
+
+        <a href="/admin/new/episode">
+            <button class="btn btn-padrao">Cadastrar novos episódios</button>
+        </a>
+
+        <a href="/admin/new/category">
+            <button class="btn btn-padrao">Cadastrar nova categoria</button>
+        </a>
+
+        <a href="/admin/list">
+            <button class="btn btn-padrao">Listar todos os animes</button>
+        </a>
+    </div>
+</section>

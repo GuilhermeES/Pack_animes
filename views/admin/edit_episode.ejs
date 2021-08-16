@@ -1,0 +1,26 @@
+<%- include('../head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+<section class="anime edit-anime-details">
+    <div class="container pt-container">
+        <form action="/admin/update/episode/<%= episode.slug %>" method="POST" onsubmit="return confirm('Vai mesmo alterar?');">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="link" value="<%= episode.link %>">
+            </div>
+            <div class="mb-3">
+                <div class="white">Iframe</div>
+                <input type="text" class="form-control" name="link_frame" value="<%= episode.link_frame %>">
+            </div>
+            
+            <button type="submit" class="btn btn-padrao">Atualizar</button>
+        </form>
+        <%= episode.link %>
+        <%= episode.link_frame %>
+    </div>
+</section>  
+
+
+<button class="btn btn-danger">Excluir</button>
+
+
+<%- include('../partials/footer.ejs') %>

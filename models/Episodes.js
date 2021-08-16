@@ -19,6 +19,10 @@ const Episodes = connection.define('episodes', {
     slug: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    status:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 });
 
@@ -26,7 +30,7 @@ const Episodes = connection.define('episodes', {
 Anime.hasMany(Episodes)
 Episodes.belongsTo(Anime)
 
-Episodes.sync({force: true})
+//Episodes.sync({force: true})
 
 
 

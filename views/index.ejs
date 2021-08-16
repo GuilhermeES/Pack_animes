@@ -1,11 +1,11 @@
 <%- include('head.ejs') %>
 <%- include('partials/header.ejs') %>
-
+    
 <section class="animes">
     <div class="container pt-container">
         <div class="row">
             <% animes.forEach((anime) => { %>
-                <div class="col-md-3 text-center">                   
+                <div class="col-md-2 text-center">                   
                         <a href="anime/<%= anime.id %>" class="no-decoration">                          
                              <img src="/static/assets/tmp/<%= anime.name %>" class="anime-capa"> 
                             <h2 class="pt-4 fs-20 poppins white fw-bold"> <%= anime.title %></h2>
