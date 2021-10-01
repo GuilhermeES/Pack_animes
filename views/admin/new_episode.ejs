@@ -7,7 +7,7 @@
 <form method="POST" action="/admin/create/episode">
     <input type="text" name="name" placeholder="Novo episodio"><br>
     <input type="text" name="link" placeholder="link do episodio"><br>
-    <input type="text" name="link_frame" placeholder="iframe link do episodio" required><br>
+    <input type="text" name="link_frame" placeholder="iframe link do episodio"><br>
     <select name="anime" required>
         <% animes.forEach((anime) => { %>
             <option value="<%= anime.id %>"> <%= anime.title %> </option>

@@ -13,6 +13,7 @@ global.__basedir = __dirname;
 const Anime = require('./models/Anime');
 const Espisodes = require('./models/Episodes');
 const User = require('./models/User');
+const ReportBug = require('./models/ReportBug');
 const Genres = require('./models/Genres');
 
 //session

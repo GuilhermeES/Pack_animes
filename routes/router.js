@@ -36,4 +36,8 @@ router.post('/auth', adminController.auth)
 
 router.post('/admin/update/episode/:slug', animeController.updateEpisode)
 
+
+router.post('/report', adminController.reportBug)
+
+
 module.exports = router

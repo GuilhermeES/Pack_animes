@@ -2,8 +2,6 @@ const Anime = require('../../models/Anime');
 const Episodes = require('../../models/Episodes');
 const Category = require('../../models/Genres');
 
-const { Op } = require("sequelize");
-
 const fs = require("fs");
 const slugify = require('slugify')
 
@@ -11,20 +9,20 @@ module.exports = {
 
      /*Render views ----------------------------------*/
      createCategoryView(req,res){
-        res.render("admin/new_category", {title: "Admin"})
+        res.render("admin/new_category", {title: "Admin", description: "Os melhores animes aqui"})
     },
 
     createEpisodeView(req,res){
         Anime.findAll()
         .then(animes => {
-            res.render("admin/new_episode", {animes: animes, title: "Admin"})
+            res.render("admin/new_episode", {animes: animes, title: "Admin", description: "Os melhores animes aqui"})
         });
     },
 
     createAnimeView(req,res){
         Category.findAll()
         .then (category => {
-            res.render("admin/new_anime", {categories: category, title: "Admin"})
+            res.render("admin/new_anime", {categories: category, title: "Admin", description: "Os melhores animes aqui"})
         })
     },
 
@@ -32,7 +30,7 @@ module.exports = {
     create(req,res){
         const title = req.body.title 
         const description = req.body.description
-        const genre = req.body.category.join()
+        const genre = req.body.category
         const type = req.file.mimetype
         const name = req.file.originalname
 
@@ -103,7 +101,7 @@ module.exports = {
     list(req,res){
         Anime.findAll()
         .then(animes => {
-            res.render("admin/anime_list", {animes: animes, title: "Admin"})
+            res.render("admin/anime_list", {animes: animes, title: "Admin", description: "Os melhores animes aqui"})
         })
     },
 
@@ -116,7 +114,8 @@ module.exports = {
                     res.render("admin/edit_anime", {
                         episodes: episodes,
                         anime: anime,
-                        title: "Admin"
+                        title: "Admin",
+                        description: "Os melhores animes aqui"
                     })
                 })                
             }   
@@ -135,7 +134,7 @@ module.exports = {
         })
         .then(episode => {
             if(episode != undefined){
-                res.render("admin/edit_episode", {episode: episode,  title: "Admin"})
+                res.render("admin/edit_episode", {episode: episode,  title: "Admin", description: "Os melhores animes aqui"})
                }
                else{
                    res.redirect("/admin/list")

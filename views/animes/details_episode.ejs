@@ -12,6 +12,35 @@
                     <button class="btn btn-padrao player-1">Player 1</button>
                     <button class="btn btn-padrao ms-2 player-2">Player 2</button>
                 </div>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Reportar bug no EP
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Reportando: <%= episode.name %></h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form method="post" action="/report">
+                                <input type="text" name="name" class="form-control" placeholder="Seu nome *" required>
+                                <input type="hidden" name="episode_id" class="form-control" value="<%= episode.id %>">
+                                <input type="hidden" name="anime_id" class="form-control" value="<%= episode.animeId %>">
+                                <div class="mt-2 mb-2">
+                                    <textarea class="form-control" placeholder="Descrição" name="description"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-padrao w-100">Enviar</button>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
             </div>
             <p class="poppins white pb-4 fs-15">Tente trocar de players caso o episodio não rode</p>
             <video
@@ -44,7 +73,8 @@
     </div>
 </section>
 
-<script>
+<script >
+
     //players
     let frame = document.querySelector('.iframe-anime');
     let videojs = document.querySelector('.video-js');

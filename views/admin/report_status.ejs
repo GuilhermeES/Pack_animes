@@ -1,0 +1,12 @@
+<h3 class="poppins white fs-30 pt-5">Episodios reportados</h3>
+<section class="report-list pt-2 ">
+    <% report.forEach((report) => { %>
+        <div class="report">
+            <div class="white poppins" > Anime ID: <%= report.anime_id %> </div>
+            <div class="white poppins" > Episodio ID: <%= report.episode_id %> </div>
+            <div class="white poppins" > Nome: <%= report.name %> </div>
+            <div class="white poppins" > Descrição: <%= report.description %> </div>
+        </div>
+        <hr>
+    <% }) %>
+</section>

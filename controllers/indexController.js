@@ -1,12 +1,14 @@
 const Anime = require('../models/Anime');
 const Episodes = require('../models/Episodes');
 
+const { Op } = require("sequelize");
+
 module.exports = {
 
     showIndexAnimes(req,res){
         Anime.findAll()
         .then(animes => {
-            res.render("index", {animes: animes, title: "Pack Animes"})
+            res.render("index", {animes: animes, title: "Pack Animes", description: "Os melhores animes aqui"})
         })
     },
 
@@ -16,10 +18,11 @@ module.exports = {
         .then(anime => {
             if(anime != undefined){
                 Episodes.findAll({where: {animeId: id}}).then(episodes => {
-                    res.render("animes/details", {
+                    res.render("animes/details", {  
                         episodes: episodes,
                         anime: anime,
-                        title: anime.title
+                        title: anime.title,
+                        description: anime.description
                     })
                 })                
             }   
@@ -38,7 +41,7 @@ module.exports = {
         })
         .then(episode => {
            if(episode != undefined){
-                res.render("animes/details_episode", {episode: episode, title: episode.name})
+                res.render("animes/details_episode", {episode: episode, title: episode.name, description: `Assistir ${episode.name} online - Pack Animes`})
            }
            else{
             res.redirect('/')
@@ -48,7 +51,6 @@ module.exports = {
 
     searchAnime(req,res){
         const search = `%${req.query.search}`;
-        console.log(search)
         Anime.findAll({ where:  { title: { [Op.startsWith]: search } } }).then(anime => {
             if (anime != undefined){
                 res.render("index", {animes: anime, title:"Pack Animes"})

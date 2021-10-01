@@ -6,7 +6,7 @@
         <% animes.forEach((anime) => { %>
             <div class="col-md-3 text-center">
                 <a href="/admin/edit-anime/<%= anime.id %>" class="no-decoration">
-                    <h2 class="pt-4 fs-20 poppins white fw-bold"> <%= anime.title %></h2>
+                    <h2 class="pt-4 fs-20 poppins white fw-bold"> <%= anime.title %> : ID <%= anime.id %></h2>
                 </a>
             </div>
         <% }) %>   

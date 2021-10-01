@@ -88,6 +88,12 @@ body{
     width: 100%;
     height: 500px;
 }
+
+/*Report list*/
+.report-list{
+    height: 400px;
+    overflow-x: auto;
+}
 /*Login*/
 .login-section{
     width: 100%;
@@ -124,8 +130,6 @@ body{
     text-decoration: none;
 }
 .section-footer{
-   
     width: 100%;
     height: 200px;
-   
 }
